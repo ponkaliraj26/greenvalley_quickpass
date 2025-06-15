@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.pip/
+
+# Django/Flask settings
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# Pytest
+.pytest_cache/
+htmlcov/
+
+# VSCode settings
+.vscode/
+
+# Mac & Linux
+.DS_Store
+.idea/
+
+# Static files
+/staticfiles/
+/media/
+
+# Secrets
+.env
+*.secret
