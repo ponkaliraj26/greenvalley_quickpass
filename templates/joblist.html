@@ -1,0 +1,13 @@
+  {% for job in jobs %}
+<div class="row border border-bottom">
+
+  <div class="col-10 " style="padding: 20px;">
+    <h3>{{job.title}}</h3>
+    {{job.location}}</br>
+    {{job.salary}}
+  </div>
+    <div class="col-2 align-middle" style="padding: 20px;">
+      <button type="button" class="btn btn-primary">Apply</button>
+    </div>
+</div>
+  {% endfor %}
