@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}View Events{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <h3 class="mb-4">School Events</h3>
+
+  <div class="row g-4">
+
+    <!-- 🟢 Active Event Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-success text-white position-relative">
+          Annual Day
+          <span class="badge bg-light text-success position-absolute top-0 end-0 m-2">Active</span>
+        </div>
+        <div class="card-body">
+          <p class="mb-1"><i class="bi bi-calendar-event me-2"></i><strong>Date:</strong> 2025-06-30</p>
+          <p class="mb-1"><i class="bi bi-geo-alt me-2"></i><strong>Campus:</strong> Peyad</p>
+          <p class="mb-1"><i class="bi bi-diagram-3 me-2"></i><strong>Department:</strong> iDiscover</p>
+          <p class="mb-0"><i class="bi bi-people me-2"></i><strong>Communities:</strong> Community 1, Community 2</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⚪ Completed Event Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm border-0 opacity-75">
+        <div class="card-header bg-secondary text-white position-relative">
+          Sports Day
+          <span class="badge bg-light text-secondary position-absolute top-0 end-0 m-2">Completed</span>
+        </div>
+        <div class="card-body">
+          <p class="mb-1"><i class="bi bi-calendar-event me-2"></i><strong>Date:</strong> 2024-12-10</p>
+          <p class="mb-1"><i class="bi bi-geo-alt me-2"></i><strong>Campus:</strong> City Campus 1</p>
+          <p class="mb-1"><i class="bi bi-diagram-3 me-2"></i><strong>Department:</strong> iPlay</p>
+          <p class="mb-0"><i class="bi bi-people me-2"></i><strong>Communities:</strong> -</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🟢 Another Active Event -->
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white position-relative">
+          PBL Exhibition
+          <span class="badge bg-light text-primary position-absolute top-0 end-0 m-2">Active</span>
+        </div>
+        <div class="card-body">
+          <p class="mb-1"><i class="bi bi-calendar-event me-2"></i><strong>Date:</strong> 2025-07-05</p>
+          <p class="mb-1"><i class="bi bi-geo-alt me-2"></i><strong>Campus:</strong> Peyad</p>
+          <p class="mb-1"><i class="bi bi-diagram-3 me-2"></i><strong>Department:</strong> iLead</p>
+          <p class="mb-0"><i class="bi bi-people me-2"></i><strong>Communities:</strong> -</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

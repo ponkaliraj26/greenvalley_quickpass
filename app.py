@@ -4,7 +4,8 @@ import sqlite3
 import secrets
 import io
 import os
-import qrcode
+import pyqrcode
+import png
 
 app = Flask(__name__)
 print(secrets.token_hex(16))
@@ -32,6 +33,21 @@ def print():
     return render_template('print.html')
 
 
+@app.route('/register_event')
+def register_event():
+    return render_template('register_event.html')
+
+
+@app.route('/view_event')
+def view_event():
+    return render_template('view_event.html')
+
+
+@app.route('/mark_attendance')
+def mark_attendance():
+    return render_template('mark_attendance.html')
+
+
 @app.route('/upload', methods=['POST'])
 def upload():
     file = request.files['csvfile']
@@ -47,12 +63,12 @@ def upload():
         name = row['name']
         grade = row['grade']
 
-        # 🧾 QR code data
+        # 🧾 QR code data (Google search link with name)
         qr_data = f"https://www.google.com/search?q={name.replace(' ', '+')}"
-        qr_img = qrcode.make(qr_data)
+        qr = pyqrcode.create(qr_data)
         qr_filename = f"{learner_id}.png"
         qr_path = os.path.join(UPLOAD_FOLDER, qr_filename)
-        qr_img.save(qr_path)
+        qr.png(qr_path, scale=6)
 
         # 📥 Insert into DB
         with sqlite3.connect("app.db") as conn:
@@ -67,7 +83,18 @@ def upload():
 
 @app.route('/view')
 def view_data():
-    return render_template('view.html', learners=learner_data)
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = sqlite3.Row  # allows dictionary-style access
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM learners")
+    rows = cursor.fetchall()
+    conn.close()
+
+    learners = [dict(row)
+                for row in rows]  # convert sqlite rows to list of dicts
+
+    return render_template('view.html', learners=learners)
 
 
 if __name__ == "__main__":

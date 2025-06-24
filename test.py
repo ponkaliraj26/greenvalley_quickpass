@@ -1,5 +1,6 @@
-from PIL import Image
+import pyqrcode
+import png
 
-img = Image.new('RGB', (100, 100), color=(73, 109, 137))
-img.save('static/qrcodes/placeholder.png')
-img.show()
+qr = pyqrcode.create("https://www.google.com/search?q=John+Doe")
+qr.png("static/qrcodes/1.png", scale=6)
+print('✅ QR code generated.')

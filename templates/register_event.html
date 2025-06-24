@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Create New Event{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Create School Event</h4>
+    </div>
+    <div class="card-body">
+      <form action="/create_event" method="POST">
+        <div class="row g-3">
+          <!-- Event Name -->
+          <div class="col-md-6">
+            <label for="event_name" class="form-label">Event Name</label>
+            <input type="text" name="event_name" id="event_name" class="form-control" required placeholder="Annual Day, PBL Exhibition etc.">
+          </div>
+
+          <!-- Event Date -->
+          <div class="col-md-6">
+            <label for="event_date" class="form-label">Event Date</label>
+            <input type="date" name="event_date" id="event_date" class="form-control" required>
+          </div>
+
+          <!-- Campus Selection -->
+          <div class="col-md-6">
+            <label for="campus" class="form-label">Select Campus</label>
+            <select name="campus" id="campus" class="form-select" required>
+              <option value="" disabled selected>-- Choose Campus --</option>
+              <option value="peyad">Peyad</option>
+              <option value="city1">City Campus 1</option>
+              <option value="city2">City Campus 2</option>
+              <option value="city3">City Campus 3</option>
+              <option value="city4">City Campus 4</option>
+            </select>
+          </div>
+
+          <!-- Department Selection (Only for Peyad) -->
+          <div class="col-md-6" id="departmentWrapper">
+            <label for="department" class="form-label">Select Department</label>
+            <select name="department" id="department" class="form-select">
+              <option value="" disabled selected>-- Choose Department --</option>
+            </select>
+          </div>
+
+          <!-- Community Selection (Only for Peyad + iDiscover) -->
+          <div class="col-md-6" id="communityWrapper">
+            <label for="community" class="form-label">Select Community</label>
+            <select name="community" id="community" class="form-select" multiple>
+              <option value="Community 1">Community 1</option>
+              <option value="Community 2">Community 2</option>
+            </select>
+            <small class="text-muted">Hold Ctrl (Windows) or Cmd (Mac) to select multiple.</small>
+          </div>
+
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-end mt-4">
+          <button type="submit" class="btn btn-success px-4">Create Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Script Block -->
+<script>
+  const campusSelect = document.getElementById('campus');
+  const departmentSelect = document.getElementById('department');
+  const departmentWrapper = document.getElementById('departmentWrapper');
+  const communityWrapper = document.getElementById('communityWrapper');
+  const eventDateInput = document.getElementById('event_date');
+
+  // Restrict date to today or future
+  const today = new Date().toISOString().split('T')[0];
+  eventDateInput.setAttribute('min', today);
+
+  // Hide department/community by default
+  departmentWrapper.style.display = 'none';
+  communityWrapper.style.display = 'none';
+
+  const departmentsByCampus = {
+    peyad: ['iPlay', 'iDiscover', 'iLead']
+  };
+
+  campusSelect.addEventListener('change', function () {
+    const selectedCampus = this.value;
+    if (selectedCampus === 'peyad') {
+      departmentWrapper.style.display = 'block';
+      departmentSelect.innerHTML = '<option value="" disabled selected>-- Choose Department --</option>';
+      departmentsByCampus.peyad.forEach(dep => {
+        const opt = document.createElement('option');
+        opt.value = dep;
+        opt.textContent = dep;
+        departmentSelect.appendChild(opt);
+      });
+    } else {
+      departmentWrapper.style.display = 'none';
+      communityWrapper.style.display = 'none';
+    }
+  });
+
+  departmentSelect.addEventListener('change', function () {
+    const selectedCampus = campusSelect.value;
+    const selectedDepartment = this.value;
+    if (selectedCampus === 'peyad' && selectedDepartment === 'iDiscover') {
+      communityWrapper.style.display = 'block';
+    } else {
+      communityWrapper.style.display = 'none';
+    }
+  });
+</script>
+{% endblock %}

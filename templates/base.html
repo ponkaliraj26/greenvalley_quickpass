@@ -27,12 +27,31 @@
         <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
       </button>
     </div>
+    <a href="{{ url_for('admin') }}" class="nav-link {% if request.endpoint == 'admin' %}active{% endif %}">
+      <i class="bi bi-upload me-2"></i><span class="link-text">Home</span>
+    </a>
+    <a href="{{ url_for('print') }}" class="nav-link {% if request.endpoint == 'print' %}active{% endif %}">
+      <i class="bi bi-card-list me-2"></i><span class="link-text">Print QR</span>
+    </a>
+
     <a href="{{ url_for('form') }}" class="nav-link {% if request.endpoint == 'form' %}active{% endif %}">
       <i class="bi bi-upload me-2"></i><span class="link-text">Upload CSV</span>
     </a>
     <a href="{{ url_for('view_data') }}" class="nav-link {% if request.endpoint == 'view_data' %}active{% endif %}">
       <i class="bi bi-card-list me-2"></i><span class="link-text">View Learners</span>
     </a>
+
+    <a href="{{ url_for('view_event') }}" class="nav-link {% if request.endpoint == 'view_event' %}active{% endif %}">
+      <i class="bi bi-card-list me-2"></i><span class="link-text">View Event</span>
+    </a>
+    
+    <!-- 🔵 Create Event Button at Bottom -->
+    <div class="mt-auto p-3">
+      <a href="{{ url_for('register_event') }}" class="btn btn-primary w-100">
+        <i class="bi bi-calendar-plus me-2"></i>Create Event
+      </a>
+    </div>
+
   </div>
 
   <!-- Main Content -->
