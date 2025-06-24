@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Learner QR Codes{% endblock %}
+{% block content %}
+<h2 class="text-center mb-4">Learner QR Codes</h2>
+<div class="row g-4">
+  {% for learner in learners %}
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="card shadow-sm h-100">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ learner.name }}</h5>
+        <p class="card-text">
+          <strong>ID:</strong> {{ learner.learner_id }}<br>
+          <strong>Grade:</strong> {{ learner.grade }}
+        </p>
+        <a href="https://www.google.com/search?q={{ learner.name | replace(' ', '+') }}" target="_blank">
+          <img src="{{ url_for('static', filename='qrcodes/' ~ learner.qr_code) }}" alt="QR Code" class="img-fluid">
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

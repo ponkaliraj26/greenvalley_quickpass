@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Print QR Codes for Learners</h3>
+    <button onclick="window.print()" class="btn btn-primary">
+      <i class="bi bi-printer me-2"></i>Print
+    </button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <!-- 🔖 Hardcoded Learner 1 -->
+    <div class="col">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <img src="{{ url_for('static', filename='qrcodes/1001.png') }}" 
+               alt="QR Code for Arjun" 
+               class="img-fluid mb-3" style="max-height: 160px;">
+          <h5 class="card-title">Arjun</h5>
+          <p class="card-text small">ID: 1001<br>Grade: 5</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔖 Hardcoded Learner 2 -->
+    <div class="col">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <img src="{{ url_for('static', filename='qrcodes/1002.png') }}" 
+               alt="QR Code for Diya" 
+               class="img-fluid mb-3" style="max-height: 160px;">
+          <h5 class="card-title">Diya</h5>
+          <p class="card-text small">ID: 1002<br>Grade: 6</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔖 Hardcoded Learner 3 -->
+    <div class="col">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <img src="{{ url_for('static', filename='qrcodes/1003.png') }}" 
+               alt="QR Code for Riya" 
+               class="img-fluid mb-3" style="max-height: 160px;">
+          <h5 class="card-title">Riya</h5>
+          <p class="card-text small">ID: 1003<br>Grade: 4</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔖 Hardcoded Learner 4 -->
+    <div class="col">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <img src="{{ url_for('static', filename='qrcodes/1004.png') }}" 
+               alt="QR Code for Karthik" 
+               class="img-fluid mb-3" style="max-height: 160px;">
+          <h5 class="card-title">Karthik</h5>
+          <p class="card-text small">ID: 1004<br>Grade: 7</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🖨️ Hide UI on Print -->
+<style>
+  @media print {
+    .btn, .navbar, .sidebar, .alert, .toast-container {
+      display: none !important;
+    }
+    .card {
+      page-break-inside: avoid;
+    }
+    body {
+      background: white !important;
+    }
+  }
+</style>
+{% endblock %}

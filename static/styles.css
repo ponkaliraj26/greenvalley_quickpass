@@ -1,0 +1,105 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #343a40;
+  color: white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 1rem;
+  transition: width 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  color: #adb5bd;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  color: white;
+  background-color: #495057;
+}
+
+.sidebar .link-text {
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar.collapsed .link-text {
+  display: none;
+}
+
+.sidebar-dark {
+  background-color: #212529;
+}
+
+.main-content {
+  margin-left: 220px;
+  padding: 1.5rem;
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed + .main-content {
+  margin-left: 60px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.sidebar i {
+  font-size: 1.3rem;
+  margin-right: 10px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar a:hover i,
+.sidebar a.active i {
+  color: #ffffff;
+  transform: scale(1.2);
+}
+
+/* For the toggle buttons */
+.sidebar .btn i {
+  font-size: 1.1rem;
+}
+
+/* Card Hover Animation */
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.card {
+  transition: all 0.3s ease-in-out;
+}
