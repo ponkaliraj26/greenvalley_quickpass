@@ -5,7 +5,6 @@ import secrets
 import io
 import os
 import qrcode
-from PIL import Image
 
 app = Flask(__name__)
 print(secrets.token_hex(16))
